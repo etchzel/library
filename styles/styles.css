@@ -1,0 +1,277 @@
+html {
+    height: 100%;
+    background: hidden;
+}
+
+html,
+body {
+    font-family: Helvetica, sans-serif;
+    color: #ffffff;
+}
+
+body {
+    min-height: 100%;
+    background-color: #424549;
+}
+
+.main-container {
+    width: 100%;
+    min-height: 100%;
+    display: grid;
+    grid-template-areas: 
+        'header header' 
+        'main panel';
+    grid-template-rows: 100px 1fr;
+    grid-template-columns: 1fr;
+}
+
+.header {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    right: 0;
+    height: 100px;
+    grid-area: header;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2e3136;
+}
+
+h1.title {
+    font-size: 42px;
+    font-weight: bold;
+    margin-left: 20px !important;
+}
+
+.main {
+    margin: 40px 40px;
+    grid-area: main;
+    display: grid;
+    justify-content: space-around;
+    justify-items: center;
+    grid-template-columns: repeat(5, 1fr);
+    grid-row-gap: 60px;
+    grid-auto-flow: row;
+}
+
+.book-container,
+.add-button {
+    position: relative;
+    width: 600px;
+    height: 400px;
+    display: grid;
+    justify-items: center;
+    background-color: linear-gradient(
+        135deg
+        , rgba(24, 77, 104, 0.8) 0%, 
+        rgba(87, 202, 133, 0.8) 100%
+    );
+    box-shadow: 0 0 4px 10px rgba(60, 59, 60, 0.6);
+    border-radius: 10px;
+}
+
+.book-container {
+    background: linear-gradient(
+        135deg
+        , rgba(24, 77, 104, 0.8) 0%, 
+        rgba(87, 202, 133, 0.8) 100%
+    );
+    grid-template-rows: 0.5fr 6fr 1.5fr;
+}
+
+.book-content {
+    display: grid;
+    padding: 0 30px 30px 30px;
+    grid-template-rows: repeat(4, 1fr);
+    align-items: center;
+    width: -webkit-fill-available;
+}
+
+.book-title {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.book-author {
+    justify-self: right;
+    font-style: italic;
+}
+
+.options {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 15px;
+    width: -webkit-fill-available;
+}
+
+.add-button .add-button-label {
+    justify-self: center;
+    align-self: center;
+    font-size: 260px;
+    transition-duration: 1.5s;
+}
+
+.add-button {
+    transform-origin: top left;
+    transition-duration: 1.5s;
+    animation: appear 0.5s ease-in-out;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.add-button:hover {
+    cursor: pointer;
+}
+
+.add-button.active {
+    background: linear-gradient(
+        135deg,
+        rgba(24, 77, 104, 0.8), 
+        rgba(87, 202, 133, 0.8)
+    );
+}
+
+.add-button.active:hover {
+    cursor: default;
+}
+
+.add-button-label.hide {
+    display: none;
+}
+
+.add-wrapper.hidden {
+    display: none;
+}
+
+.add-wrapper {
+    justify-content: center;
+    align-content: center;
+    width: inherit;
+    height: inherit;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.5fr 6fr 1.5fr;
+    border-radius: auto;
+    animation: appear 0.5s ease-in-out;
+}
+
+.add-content {
+    display: grid;
+    padding: 15px 0;
+    grid-template-columns: 1fr;
+    grid-row-gap: 26px;
+    justify-content: center;
+    align-content: space-evenly;
+}
+
+.cancel-button {
+    cursor: pointer;
+    color: white;
+    font-size: 30px;
+    justify-self: right;
+    display: flex;
+    margin-right: 10px;
+    align-self: center;
+}
+
+.element {
+    position: relative;
+    width: 80%;
+    justify-self: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.element > .title {
+    color: rgba(0, 0, 0, 0.3);
+    font-size: 14px;
+    padding: 0.3rem 0.1rem;
+    position: absolute;
+    bottom: 0;
+}
+
+.input {
+    border: 0;
+    color: rgba(0, 0, 0, 0.5);
+    background: transparent;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.4);
+    padding: 0 0.3rem;
+    height: auto;
+}
+
+.input.number {
+    width: 60%;
+}
+
+.input-not-validated {
+    border-bottom: 2px solid rgb(237, 66, 69, 0.6) !important;
+}
+
+.element > .input:focus ~ .title,
+.element > .input:valid ~ .title {
+    visibility: hidden;
+}
+
+.add-confirm {
+    justify-content: center;
+    display: flex;
+    padding-bottom: 15px;
+}
+
+.add-confirm-button,
+.edit-button {
+    justify-self: center;
+    width: 80%;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    background-color: #7289da;
+    color: rgb(255, 255, 255);
+    font-size: 12px;
+    font-weight: bold;
+}
+
+
+@media only screen and (max-width: 1800px) {
+    .main {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media only screen and (max-width: 1460px) {
+    .main {
+      grid-template-columns: repeat(3, 1fr);
+    }
+}
+  
+@media only screen and (max-width: 1160px) {
+    .main {
+      grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media only screen and (max-width: 960px) {
+    .main {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .book-container, .add-button {
+        width: 440px;
+        height: 300px;
+    }
+}
+
+@media only screen and (max-width: 760px) {
+    .main {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+@media only screen and (max-width: 560px) {
+    .main {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}

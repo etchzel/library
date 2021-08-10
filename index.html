@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/reset.css">
+    <link rel="stylesheet" href="./styles/styles.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="main-container">
+        <header class="header">
+            <h1 class="title">Library App</h1>
+        </header>
+        <main class="main">
+            <div class="book-container">
+                <span class="cancel-button">&times;</span>
+                <div class="book-content">
+                    <h3 class="book-title">A Game of Thrones</h3>
+                    <span class="book-author">By: George R. R. Martin</span>
+                    <span class="num-pages">Number of pages: 694</span>
+                    <span class="current-page">Current page: 200</span>
+                </div>
+                <div class="options">
+                    <button class="edit-button">
+                        Edit
+                    </button>
+                </div>
+            </div>
+            <div class="add-button">
+                <div class="add-wrapper hidden">
+                    <span class="cancel-button" id="cancelAdd">&times;</span>
+                    <div class="add-content">
+                        <div class="element">
+                            <input type="text" class="input" id="addBookTitle" required>
+                            <label for="addBookTitle" class="title">Title</label>
+                        </div>
+                        <div class="element">
+                            <input type="text" class="input" id="addBookAuthor" required>
+                            <label for="addBookAuthor" class="title">Author</label>
+                        </div>
+                        <div class="element">
+                            <input type="number" class="input number" id="addBookTotalPages" required>
+                            <label for="addBookTotalPages" class="title">Total pages</label>
+                        </div>
+                        <div class="element">
+                            <input type="number" class="input number" id="addBookCurrentPage" required>
+                            <label for="addBookCurrentPage" class="title">Current page</label>
+                        </div>
+                    </div>
+                    <div class="add-confirm">
+                        <button class="add-confirm-button">
+                            Submit
+                        </button>
+                    </div>
+                </div>
+                <span class="add-button-label">&plus;</span>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
