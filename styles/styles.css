@@ -85,7 +85,10 @@ h1.title {
     padding: 0 30px 30px 30px;
     grid-template-rows: repeat(4, 1fr);
     align-items: center;
+    width: 100%;
     width: -webkit-fill-available;
+    width: -moz-available;
+    width: fill-available;
 }
 
 .book-title {
@@ -102,7 +105,10 @@ h1.title {
     display: flex;
     justify-content: center;
     padding-bottom: 15px;
+    width: 100%;
     width: -webkit-fill-available;
+    width: -moz-available;
+    width: fill-available;
 }
 
 .add-button .add-button-label {
