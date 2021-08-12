@@ -3,6 +3,10 @@ html {
     background: hidden;
 }
 
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
 html,
 body {
     font-family: Helvetica, sans-serif;
@@ -27,7 +31,7 @@ body {
 
 .header {
     position: fixed;
-    z-index: 1;
+    z-index: 10;
     left: 0;
     right: 0;
     height: 100px;
@@ -50,7 +54,7 @@ h1.title {
     display: grid;
     justify-content: space-around;
     justify-items: center;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     grid-row-gap: 60px;
     grid-auto-flow: row;
 }
@@ -58,26 +62,91 @@ h1.title {
 .book-container,
 .add-button {
     position: relative;
-    width: 600px;
-    height: 400px;
+    width: 500px;
+    height: 300px;
     display: grid;
     justify-items: center;
-    background-color: linear-gradient(
-        135deg
-        , rgba(24, 77, 104, 0.8) 0%, 
-        rgba(87, 202, 133, 0.8) 100%
+    background: linear-gradient(
+        135deg,
+        #5c6867da,
+        #7289da
     );
     box-shadow: 0 0 4px 10px rgba(60, 59, 60, 0.6);
     border-radius: 10px;
+    transform-origin: top left;
+    animation: appear 0.5s ease-in-out;
+    transition: opacity 1.5s;
+    z-index: 1;
+}
+
+.add-button .add-button-label {
+    justify-self: center;
+    align-self: center;
+    font-size: 260px;
+    transition-duration: 1.5s;
+}
+
+.add-button {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.add-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background: linear-gradient(
+        135deg,
+        #7289da, 
+        #5c6867da
+    );
+    border-radius: 10px;
+    transition: 1.5s;
+    opacity: 0;
+    z-index: -1;
+}
+
+.add-button:hover {
+    cursor: pointer;
+}
+
+.add-button.active {
+    position: relative;
+    background: linear-gradient(
+        135deg,
+        #5c6867da,
+        #7289da
+    );
+}
+
+.add-button.active::before {
+    opacity: 1;
+}
+
+.add-button.active:hover {
+    cursor: default;
+}
+
+.add-button-label.hide {
+    display: none;
 }
 
 .book-container {
-    background: linear-gradient(
-        135deg
-        , rgba(24, 77, 104, 0.8) 0%, 
-        rgba(87, 202, 133, 0.8) 100%
-    );
     grid-template-rows: 0.5fr 6fr 1.5fr;
+    background: linear-gradient(135deg, #2e3136, #424549);
+}
+
+.book-container.read {
+    background: linear-gradient(
+        135deg,
+        #5c6867da,
+        #7289da
+    );
 }
 
 .book-content {
@@ -111,43 +180,6 @@ h1.title {
     width: fill-available;
 }
 
-.add-button .add-button-label {
-    justify-self: center;
-    align-self: center;
-    font-size: 260px;
-    transition-duration: 1.5s;
-}
-
-.add-button {
-    transform-origin: top left;
-    transition-duration: 1.5s;
-    animation: appear 0.5s ease-in-out;
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-.add-button:hover {
-    cursor: pointer;
-}
-
-.add-button.active {
-    background: linear-gradient(
-        135deg,
-        rgba(24, 77, 104, 0.8), 
-        rgba(87, 202, 133, 0.8)
-    );
-}
-
-.add-button.active:hover {
-    cursor: default;
-}
-
-.add-button-label.hide {
-    display: none;
-}
-
 .add-wrapper.hidden {
     display: none;
 }
@@ -167,9 +199,9 @@ h1.title {
 
 .add-content {
     display: grid;
-    padding: 15px 0;
+    padding-bottom: 15px;
     grid-template-columns: 1fr;
-    grid-row-gap: 26px;
+    grid-row-gap: 10px;
     justify-content: center;
     align-content: space-evenly;
 }
@@ -182,6 +214,7 @@ h1.title {
     display: flex;
     margin-right: 10px;
     align-self: center;
+    margin-top: 5px;
 }
 
 .element {
@@ -192,17 +225,57 @@ h1.title {
     flex-direction: column;
 }
 
+.element.page-date-input {
+    display: grid;
+    grid-row-gap: 25px;
+    align-content: space-evenly;
+    width: 100%;
+}
+
+.element.number,
+.element.date {
+    width: 100%;
+}
+
+.element#inputSecondHalf {
+    display: grid;
+    justify-content: left;
+    grid-template-columns: 6fr 4fr;
+    justify-self: center;
+}
+
 .element > .title {
-    color: rgba(0, 0, 0, 0.3);
+    color: rgba(207, 207, 207, 0.8);
     font-size: 14px;
     padding: 0.3rem 0.1rem;
     position: absolute;
     bottom: 0;
 }
 
+.toggle-wrapper {
+    display: grid;
+    grid-template-rows: 5fr 5fr;
+    justify-content: center;
+}
+
+.toggle-wrapper > .title {
+    display: flex;
+    align-self: center;
+    justify-self: center;
+    color: rgba(207, 207, 207, 0.8);
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.toggle-controller {
+    display: block;
+    position: relative;
+    padding-left: 20px;
+}
+
 .input {
     border: 0;
-    color: rgba(0, 0, 0, 0.5);
+    color: rgba(207, 207, 207, 0.8);
     background: transparent;
     border-bottom: 2px solid rgba(0, 0, 0, 0.4);
     padding: 0 0.3rem;
@@ -210,7 +283,60 @@ h1.title {
 }
 
 .input.number {
-    width: 60%;
+    width: 80%;
+}
+
+.input.date {
+    width: 80%;
+}
+
+/* SLIDER (TOGGLE) */
+
+.input.checkbox {
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.toggle-controller > .toggle {
+    position: absolute;
+    cursor: pointer;
+    background-color: #5c6867da;
+    border-radius: 30px;
+    transition: background-color 0.15s ease-in;
+    border: solid 1px rgba(0, 0, 0, 0.4);
+    height: 34px;
+    width: 65px;
+}
+
+.toggle-controller > .toggle::after {
+    position: absolute;
+    content: "";
+    left: 1px;
+    top: 1px;
+    height: 30px;
+    width: 30px;
+    border-radius: 34px;
+    background: rgba(207, 207, 207, 0.8);
+    transition: left 0.15s ease-in;
+}
+
+.toggle-controller > .input.checkbox:checked ~ .toggle::after {
+    left: 32px;
+    background: rgb(207, 207, 207);
+}
+
+.toggle-controller > .input.input.checkbox:checked~.toggle {
+    background-color: #7289da;
+}
+
+.input.date:required:invalid {
+    color: transparent;
+}
+
+.input.date:focus {
+    color: rgba(207, 207, 207, 0.8) !important;
 }
 
 .input-not-validated {
@@ -243,19 +369,24 @@ h1.title {
 
 @media only screen and (max-width: 1800px) {
     .main {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .book-container, .add-button {
+        width: 400px;
+        height: 240px;
     }
 }
 
 @media only screen and (max-width: 1460px) {
     .main {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
     }
 }
   
 @media only screen and (max-width: 1160px) {
     .main {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
     }
 }
 
@@ -265,8 +396,8 @@ h1.title {
     }
 
     .book-container, .add-button {
-        width: 440px;
-        height: 300px;
+        width: 600px;
+        height: 360px;
     }
 }
 
@@ -274,10 +405,28 @@ h1.title {
     .main {
         grid-template-columns: repeat(1, 1fr);
     }
+
+    .book-container, .add-button {
+        width: 500px;
+        height: 300px;
+    }
 }
 
 @media only screen and (max-width: 560px) {
     .main {
         grid-template-columns: repeat(1, 1fr);
+    }
+
+    .book-container, .add-button {
+        width: 90%;
+        height: 90%;
+    }
+
+    .book-content {
+        padding-bottom: 10px;
+    }
+
+    .options {
+        padding-bottom: 10px;
     }
 }

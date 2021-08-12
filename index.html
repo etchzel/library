@@ -14,7 +14,7 @@
             <h1 class="title">Library App</h1>
         </header>
         <main class="main">
-            <div class="book-container">
+            <div class="book-container unread">
                 <span class="cancel-button">&times;</span>
                 <div class="book-content">
                     <h3 class="book-title">A Game of Thrones</h3>
@@ -33,20 +33,31 @@
                     <span class="cancel-button" id="cancelAdd">&times;</span>
                     <div class="add-content">
                         <div class="element">
-                            <input type="text" class="input" id="addBookTitle" required>
+                            <input type="text" class="input" id="addBookTitle" autocomplete="off" required>
                             <label for="addBookTitle" class="title">Title</label>
                         </div>
                         <div class="element">
-                            <input type="text" class="input" id="addBookAuthor" required>
+                            <input type="text" class="input" id="addBookAuthor" autocomplete="off" required>
                             <label for="addBookAuthor" class="title">Author</label>
                         </div>
-                        <div class="element">
-                            <input type="number" class="input number" id="addBookTotalPages" required>
-                            <label for="addBookTotalPages" class="title">Total pages</label>
-                        </div>
-                        <div class="element">
-                            <input type="number" class="input number" id="addBookCurrentPage" required>
-                            <label for="addBookCurrentPage" class="title">Current page</label>
+                        <div class="element" id="inputSecondHalf">
+                            <div class="element page-date-input">
+                                <div class="element number">
+                                    <input type="number" class="input number" id="addBookTotalPages" autocomplete="off" required>
+                                    <label for="addBookTotalPages" class="title">Total pages</label>
+                                </div>
+                                <div class="element date">
+                                    <input type="date" class="input date" id="addBookDatePublished" required>
+                                    <label for="addBookDatePublished" class="title">Date Published</label>
+                                </div>
+                            </div>
+                            <div class="toggle-wrapper">
+                                <span class="title check">Mark as Read:</span>
+                                <label class="toggle-controller">
+                                    <input type="checkbox" id="addBookMarkRead" class="input checkbox">
+                                    <span class="toggle"></span>
+                                </label>
+                            </div>
                         </div>
                     </div>
                     <div class="add-confirm">
@@ -59,6 +70,6 @@
             </div>
         </main>
     </div>
-    <script src="script.js"></script>
+    <script type="module" src="./scripts/script.js"></script>
 </body>
 </html>
