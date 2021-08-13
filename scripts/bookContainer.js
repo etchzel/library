@@ -7,7 +7,7 @@ const createBookContainer = (book) => {
     if (book.isFinished) bookContainer.classList.add('read');
 
     const cancelButton = document.createElement('span');
-    cancelButton.classList.add('cancel-button');
+    cancelButton.classList.add('delete-button');
     cancelButton.textContent = '×';
 
     // content
@@ -36,6 +36,7 @@ const createBookContainer = (book) => {
 
     const editButton = document.createElement('button');
     editButton.classList.add('edit-button');
+    editButton.setAttribute('data-id', `${book.id}`);
     editButton.textContent = 'Edit';
 
     // construct the elements

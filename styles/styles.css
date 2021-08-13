@@ -55,7 +55,7 @@ h1.title {
     justify-content: space-around;
     justify-items: center;
     grid-template-columns: repeat(3, 1fr);
-    grid-row-gap: 60px;
+    row-gap: 60px;
     grid-auto-flow: row;
 }
 
@@ -93,7 +93,8 @@ h1.title {
     user-select: none;
 }
 
-.add-button::before {
+.add-button::before,
+.book-container::before {
     content: "";
     position: absolute;
     top: 0;
@@ -142,11 +143,16 @@ h1.title {
 }
 
 .book-container.read {
+    position: relative;
     background: linear-gradient(
         135deg,
         #5c6867da,
         #7289da
     );
+}
+
+.book-container.read::before {
+    opacity: 1;
 }
 
 .book-content {
@@ -180,11 +186,18 @@ h1.title {
     width: fill-available;
 }
 
+.edit-wrapper.hidden,
+.book-content.hidden,
+.options.hidden,
+.cancel-button.hidden {
+    display: none;
+}
+
 .add-wrapper.hidden {
     display: none;
 }
 
-.add-wrapper {
+.add-wrapper, .edit-wrapper {
     justify-content: center;
     align-content: center;
     width: inherit;
@@ -201,12 +214,13 @@ h1.title {
     display: grid;
     padding-bottom: 15px;
     grid-template-columns: 1fr;
-    grid-row-gap: 10px;
+    row-gap: 10px;
     justify-content: center;
     align-content: space-evenly;
 }
 
-.cancel-button {
+.cancel-button,
+.delete-button {
     cursor: pointer;
     color: white;
     font-size: 30px;
@@ -215,6 +229,10 @@ h1.title {
     margin-right: 10px;
     align-self: center;
     margin-top: 5px;
+}
+
+.delete-button.hidden {
+    display: none;
 }
 
 .element {
@@ -227,7 +245,7 @@ h1.title {
 
 .element.page-date-input {
     display: grid;
-    grid-row-gap: 25px;
+    row-gap: 27.5px;
     align-content: space-evenly;
     width: 100%;
 }
@@ -237,7 +255,7 @@ h1.title {
     width: 100%;
 }
 
-.element#inputSecondHalf {
+.element.second-row {
     display: grid;
     justify-content: left;
     grid-template-columns: 6fr 4fr;
@@ -376,17 +394,21 @@ h1.title {
         width: 400px;
         height: 240px;
     }
+
+    .element.page-date-input {
+        row-gap: 16px;
+    }
 }
 
 @media only screen and (max-width: 1460px) {
     .main {
-      grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr);
     }
 }
   
 @media only screen and (max-width: 1160px) {
     .main {
-      grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
@@ -399,6 +421,23 @@ h1.title {
         width: 600px;
         height: 360px;
     }
+
+    .add-content {
+        row-gap: 0px;
+        padding-bottom: 0px;
+    }
+
+    .element {
+        font-size: 20px;
+    }
+
+    .element > .title {
+        font-size: 20px;
+    }
+
+    .element.page-date-input {
+        row-gap: 30px;
+    }
 }
 
 @media only screen and (max-width: 760px) {
@@ -410,6 +449,23 @@ h1.title {
         width: 500px;
         height: 300px;
     }
+
+    .add-content {
+        row-gap: 0px;
+        padding-bottom: 10px;
+    }
+
+    .element {
+        font-size: 14px;
+    }
+
+    .element > .title {
+        font-size: 14px;
+    }
+
+    .element.page-date-input {
+        row-gap: 25px;
+    }
 }
 
 @media only screen and (max-width: 560px) {
@@ -418,8 +474,38 @@ h1.title {
     }
 
     .book-container, .add-button {
-        width: 90%;
-        height: 90%;
+        width: 370px;
+        height: 220px;
+    }
+
+    .add-button .add-button-label {
+        font-size: 200px;
+    }
+
+    .cancel-button, .delete-button {
+        font-size: 25px;
+        margin-top: 0px;
+        margin-right: 5px;
+    }
+
+    .add-wrapper, .edit-wrapper {
+        grid-template-rows: 0.25fr 5.75fr 2fr;
+    }
+
+    .add-content {
+        padding-bottom: 5px;
+    }
+
+    .element {
+        font-size: 12px;
+    }
+
+    .element > .title {
+        font-size: 12px;
+    }
+
+    .element.page-date-input {
+        row-gap: 12.5px;
     }
 
     .book-content {
@@ -428,5 +514,24 @@ h1.title {
 
     .options {
         padding-bottom: 10px;
+    }
+    
+    .toggle-wrapper > .title {
+        font-size: 14px;
+    }
+
+    .toggle-controller > .toggle {
+        width: 45px;
+        height: 25px;
+    }
+
+    .toggle-controller > .toggle::after {
+        height: 21px;
+        width: 21px;
+        border-radius: 21px;
+    }
+
+    .toggle-controller > .input.checkbox:checked ~ .toggle::after {
+        left: 21px;
     }
 }

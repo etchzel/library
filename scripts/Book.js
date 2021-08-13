@@ -15,13 +15,13 @@ function Book({
 };
 
 Book.prototype.setProperties = function (book) {
-    this.id = book.id,
-    this.title = book.title,
-    this.author = book.author,
-    this.numPages = book.numPages,
-    this.datePublished = book.datePublished
-    this.isFinished = book.isFinished
-}
+    this.id = book.id;
+    this.title = book.title;
+    this.author = book.author;
+    this.numPages = book.numPages;
+    this.datePublished = book.datePublished;
+    this.isFinished = book.isFinished;
+};
 
 Book.prototype.generateId = function (library) {
     if (library.length === 0) {
